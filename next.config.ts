@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    domains: ['media.lamaisonduteeshirt.com', 'www.jkwears.store', 'youtu.be'],
+  },
 };
 
 export default nextConfig;
