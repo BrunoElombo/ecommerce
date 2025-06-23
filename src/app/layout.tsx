@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import HeaderSection from "./modules/HeaderSection";
+import { Toaster } from "@/components/ui/sonner"
 
 const poppins = Poppins({
   weight: ['400', '500', '600', '700'],
@@ -26,6 +27,7 @@ export default function RootLayout({
       >
         <HeaderSection />
         {children}
+        <Toaster />
       </body>
     </html>
   );

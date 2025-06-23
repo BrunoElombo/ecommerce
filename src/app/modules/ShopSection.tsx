@@ -29,7 +29,7 @@ const ShopSection = () => {
   }, []);
   return (
     <div className='w-full bg-black min-h-screen p-6 md:p-12'>
-        <h2 className='text-8xl'>Products</h2>
+        <h2 className='text-6xl md:text-8xl flex flex-wrap'>Products</h2>
         <div className='flex flex-col w-full md:flex-row md:items-center gap-4 my-8 flex-wrap'>
           {
             products.map((product:any) => <ProductCard 

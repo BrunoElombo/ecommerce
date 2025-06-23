@@ -62,3 +62,9 @@ svg .svg-elem-3 {
 svg.active .svg-elem-3 {
   fill: rgb(0, 0, 0);
 }
+
+.trace-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: trace 3s ease forwards;
+}

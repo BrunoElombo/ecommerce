@@ -21,6 +21,7 @@ export interface Product{
     salePrice?:number | null,
     stock?:number | null,
     productImage:ProductImage[],
+    images?:string[],
     keyWords:KeyWord[],
     categories:Category[],
     variations?:ProductVariation[] | null,
@@ -45,8 +46,9 @@ export interface Product{
     id:string,
     productId:string,
     image:string,
-    variation:string,
+    type:string,
     value:string,
+    name:string,
     additionalPrice:number
   }
 

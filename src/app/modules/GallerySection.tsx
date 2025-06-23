@@ -8,6 +8,7 @@ import { EyeIcon } from '@heroicons/react/24/outline'
 import { Dialog } from '@headlessui/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import Marquee from "react-fast-marquee"
 
 const GallerySection = () => {
     const [isMobile, setIsMobile] = useState(false);
@@ -49,7 +50,7 @@ const GallerySection = () => {
 
   return (
     <div className='w-full bg-black min-h-[50vh] p-6 md:p-12'>
-        <h2 className='text-8xl'>Gallery</h2>
+        <h2 className='text-6xl md:text-8xl flex flex-wrap'>Gallery</h2>
         {/* Gallery images */}
         {isMobile ? (
                 <div className="w-full max-w-[100vw] overflow-hidden my-8">

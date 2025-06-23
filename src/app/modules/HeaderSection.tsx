@@ -1,4 +1,5 @@
 "use client"
+import { API_URL } from '@/constants/urls'
 import { useAuthContext } from '@/context/AuthContext'
 import { ShoppingBagIcon, MagnifyingGlassIcon, Bars3Icon, XMarkIcon, UserIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
@@ -16,12 +17,35 @@ const HeaderSection = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
 
+  const [cartSize, setCartSize] = useState(0)
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
       setIsScrolled(scrollPosition > 100)
     }
 
+    const fetchCartItems =async()=>{
+      try {
+        let url:string=`${API_URL}/cart-items`;
+        let options ={
+          headers:{
+            'authorization':'Bearer '+"token"
+          }
+        }
+        let response = await fetch(url, options)
+        let result = await response.json();
+        if(result.error){
+          return;
+        }
+        let cartSize = result.data.length;
+        setCartSize(cartSize);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    fetchCartItems();
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
@@ -77,7 +101,7 @@ const HeaderSection = () => {
             <Link href="/cart" className={`${isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-gray-200'} relative`}>
               <ShoppingBagIcon className='h-6 w-6' />
               <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>
-                0
+                {cartSize}
               </span>
             </Link>
             <Link href={token ? "/profile" : "/auth/login"} className={`${isScrolled ? 'text-black hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>
@@ -96,7 +120,7 @@ const HeaderSection = () => {
             <Link href="/cart" className={`${isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-gray-200'} relative`}>
               <ShoppingBagIcon className='h-6 w-6' />
               <span className='absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center'>
-                0
+                {cartSize}
               </span>
             </Link>
             <Link href={token ? "/profile" : "/auth/login"} className={`${isScrolled ? 'text-gray-600 hover:text-gray-900' : 'text-white hover:text-gray-200'}`}>
