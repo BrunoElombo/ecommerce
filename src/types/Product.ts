@@ -13,7 +13,7 @@
 
 export interface Product{
     id:string,
-    name:string
+    title:string
     image?:string | null,
     slug:string,
     description?:string | null,

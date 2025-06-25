@@ -92,7 +92,7 @@ const ShopPage = () => {
     // Search filter
     if (searchQuery) {
       filtered = filtered.filter(product =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product?.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (product.description?.toLowerCase() || '').includes(searchQuery.toLowerCase())
       )
     }
