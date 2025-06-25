@@ -6,6 +6,7 @@ import { Product } from '@/types/Product'
 import ProductCard from '@/components/ProductCard'
 import { ChevronUpIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useInView } from 'react-intersection-observer'
+import {Loading}
 
 interface Category {
   id: string
@@ -192,11 +193,7 @@ const ShopPage = () => {
         </div>
 
         {/* Loading indicator */}
-        <div ref={ref} className="h-20 flex items-center justify-center">
-          {loading && (
-            <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-black"></div>
-          )}
-        </div>
+        <Loading />
       </div>
 
       {/* Back to Top Button */}

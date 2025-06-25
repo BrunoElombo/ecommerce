@@ -1,22 +1,23 @@
 "use client"
 
-import { Eye, EyeClosed } from 'lucide-react';
 import Link from 'next/link';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 
 
 const page = () => {
     const {register, handleSubmit, formState:{errors}} = useForm();
-    const [showpassword, setShowpassword] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
 
 
     const handleLogin = async(data:any)=>{
+        setIsSubmitting(true);
         try {
-            
+            console.log(data);
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsSubmitting(false);
         }
     }
 

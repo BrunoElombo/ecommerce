@@ -2,35 +2,35 @@
 
 import ProductCard from '@/components/ProductCard';
 import { API_URL } from '@/constants/urls';
-import { Product, ProductVariation } from '@/types/Product';
-import { HeartIcon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import { Product } from '@/types/Product';
+import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { toast } from "sonner";
 
 const Page = () => {
-    const router = useRouter();
+    // const router = useRouter();
     let {slug} = useParams();
     let { register, handleSubmit, formState:{errors},  } = useForm();
     const [product, setProduct] = useState<Product>();
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedVariations, setSelectedVariations] = useState<string[]>([]);
-    const [quantity, setQuantity] = useState<number>(1);
-    const [coupon, setCoupon] = useState<string>('');
+    // const [quantity, setQuantity] = useState<number>(1);
+    // const [coupon, setCoupon] = useState<string>('');
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingRelated, setIsLoadingRelated] = useState<boolean>(false);
-    const [cartCount, setCartCount] = useState<number>(0);
+    // const [cartCount, setCartCount] = useState<number>(0);
 
     useEffect(()=>{
         const handleFetchProduct = async()=>{
             setIsLoading(true);
             let url =`${process.env.NEXT_PUBLIC_API_URL}/products/${slug}`;
             try {
-                let response = await fetch(url);
-                let result = await response.json();
+                const response = await fetch(url);
+                const result = await response.json();
                 if(result.error){
                     toast.error(result.error);
                     return;
@@ -77,8 +77,8 @@ const Page = () => {
                     const result = await response.json();
                     if (result.data) {
                         // Calculate total items in cart
-                        const totalItems = result.data.reduce((total: number, item: any) => total + item.qty, 0);
-                        setCartCount(totalItems);
+                        // const totalItems = result.data.reduce((total: number, item: any) => total + item.qty, 0);
+                        // setCartCount(totalItems);
                     }
                 }
             } catch (error) {
@@ -152,7 +152,7 @@ const Page = () => {
             toast.success('Product added to cart successfully!');
             
             // Update cart count
-            setCartCount(prev => prev + parseInt(data.qty));
+            // setCartCount(prev => prev + parseInt(data.qty));
             
             // Reset form
             setSelectedVariations([]);
@@ -176,8 +176,8 @@ const Page = () => {
             {/* Breadcrumb */}
             <div className="text-sm breadcrumbs mt-8 mb-2">
                 <ul className='flex items-center gap-2 pt-4'>
-                    <li><a href="/" className='text-gray-500'>Home / </a></li>
-                    <li><a href="/shop" className='text-gray-500'>Shop / </a></li>
+                    <li><Link href="/" className='text-gray-500'>Home / </Link></li>
+                    <li><Link href="/shop" className='text-gray-500'>Shop / </Link></li>
                     <li>{product?.slug}</li>
                 </ul>
             </div>
@@ -400,7 +400,9 @@ const Page = () => {
                 <h4 className='text-4xl my-4 text-white'>Related products</h4>
                 <div className='flex md:items-center gap-4 flex-col md:flex-row w-full'>
                 {
-                products.map((product) => (
+                    isLoadingRelated ? 
+                    <p>loading related product...</p> :
+                    products.map((product) => (
                     <ProductCard 
                         key={product.slug}
                         name={product.name}

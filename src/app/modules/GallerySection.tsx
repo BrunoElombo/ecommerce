@@ -8,7 +8,7 @@ import { EyeIcon } from '@heroicons/react/24/outline'
 import { Dialog } from '@headlessui/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
-import Marquee from "react-fast-marquee"
+// import Marquee from "react-fast-marquee"
 
 const GallerySection = () => {
     const [isMobile, setIsMobile] = useState(false);

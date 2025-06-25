@@ -2,29 +2,33 @@
 
 import { Eye, EyeClosed } from 'lucide-react';
 import Link from 'next/link';
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
-import { useRouter, useSearchParams } from 'next/navigation';
+// import { useRouter, useSearchParams } from 'next/navigation';
 
 const page = () => {
-    const {register, handleSubmit, formState:{errors}} = useForm<Login>();
+    const {register, handleSubmit, formState:{errors}} = useForm();
     const [showpassword, setShowpassword] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
-    const router = useRouter();
-    const searchParams = useSearchParams();
+    // const router = useRouter();
+    // const searchParams = useSearchParams();
 
     const handleLogin = async(data:any)=>{
         try {
+            setIsSubmitting(true);
+            console.log(data);
             // ... existing login logic ...
             // On successful login:
-            const redirect = searchParams.get('redirect');
-            if (redirect) {
-                router.replace(redirect);
-            } else {
-                router.replace('/');
-            }
+            // const redirect = searchParams.get('redirect');
+            // if (redirect) {
+            //     router.replace(redirect);
+            // } else {
+            //     router.replace('/');
+            // }
         } catch (error) {
             console.log(error);
+        }finally{
+            setIsSubmitting(false);
         }
     }
 
