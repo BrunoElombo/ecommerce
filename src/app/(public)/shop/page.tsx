@@ -6,7 +6,7 @@ import { Product } from '@/types/Product'
 import ProductCard from '@/components/ProductCard'
 import { ChevronUpIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useInView } from 'react-intersection-observer'
-import Loading from "@components/Loading"
+import Loading from '@/components/Loading'
 
 interface Category {
   id: string
