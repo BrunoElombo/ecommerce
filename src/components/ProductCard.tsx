@@ -100,7 +100,7 @@ const ProductForm = ({ title, price, slug, closeModal }: { title: string; price:
 }
 
 interface ProductCardProps {
-  name: string;
+  title: string;
   image: string;
   slug: string;
   description: string;
@@ -108,7 +108,7 @@ interface ProductCardProps {
   stock: number;
 }
 
-const ProductCard = ({ name, image, slug, description, price, stock }: ProductCardProps) => {
+const ProductCard = ({ title, image, slug, description, price, stock }: ProductCardProps) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -131,7 +131,7 @@ const ProductCard = ({ name, image, slug, description, price, stock }: ProductCa
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
               <Image
                 src={image}
-                alt={name}
+                alt={title}
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -141,7 +141,7 @@ const ProductCard = ({ name, image, slug, description, price, stock }: ProductCa
             <div className="w-full h-full flex items-center justify-center bg-gray-200">
               <Image
                 src={'/jk-wears-logo-black.svg'}
-                alt={name}
+                alt={title}
                 fill
                 className="opacity-25"
                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
@@ -158,7 +158,7 @@ const ProductCard = ({ name, image, slug, description, price, stock }: ProductCa
         {/* Content */}
         <div className="p-4">
           <div className='flex items-center justify-between'>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 capitalize">{name}</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2 line-clamp-2 capitalize">{title}</h3>
             {/* <div>
               <HeartIcon className='h-4 text-black'/>
             </div> */}
