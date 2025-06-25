@@ -188,6 +188,9 @@ const ShopPage = () => {
             <ProductCard
               key={product.id}
               {...product}
+              image={product.image ?? '/placeholder.jpg'}
+              description={product.description ?? ''}
+              price={product.price ?? 0}
             />
           ))}
         </div>
