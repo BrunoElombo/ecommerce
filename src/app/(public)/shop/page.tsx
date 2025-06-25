@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback } from 'react'
 import { API_URL } from '@/constants/urls'
 import { Product } from '@/types/Product'
-import ProductCard from '@/components/ProductCard'
+// import ProductCard from '@/components/ProductCard'
 import { ChevronUpIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline'
 import { useInView } from 'react-intersection-observer'
 import Loading from '@/components/Loading'
@@ -183,14 +183,14 @@ const ShopPage = () => {
 
       {/* Products Grid */}
       <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredProducts.map((product:Product) => (
             <ProductCard
               key={product.id}
               {...product}
             />
           ))}
-        </div>
+        </div> */}
 
         {/* Loading indicator */}
         <Loading />
