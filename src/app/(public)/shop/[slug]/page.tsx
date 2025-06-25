@@ -192,7 +192,7 @@ const Page = () => {
                                 {product?.image ? (
                                     <Image
                                     src={product?.image}
-                                    alt={product?.name}
+                                    alt={product?.title}
                                     fill
                                     className="object-cover absolute"
                                     sizes="(max-width: 100px) 100px, (max-width: 100px) 50vw, 100px"
@@ -200,7 +200,7 @@ const Page = () => {
                                 ) : (
                                     <Image
                                         src={'/jk-wears-logo-black.svg'}
-                                        alt={product?.name || "jk-wears-logo-black"}
+                                        alt={product?.title || "jk-wears-logo-black"}
                                         fill
                                         className="opacity-25"
                                         sizes="(max-width: 100px) 100px, (max-width: 100px) 50vw, 100px"
@@ -215,7 +215,7 @@ const Page = () => {
                                     <div className="h-full flex items-center justify-center bg-gray-200 relative">
                                         <Image
                                             src={image.link}
-                                            alt={`${product?.name} - Image ${index + 1}`}
+                                            alt={`${product?.title} - Image ${index + 1}`}
                                             fill
                                             className="object-cover absolute"
                                             sizes="(max-width: 100px) 100px, (max-width: 100px) 50vw, 100px"
@@ -231,7 +231,7 @@ const Page = () => {
                         {product?.image ? (
                             <Image
                             src={product?.image}
-                            alt={product?.name}
+                            alt={product?.title}
                             fill
                             className="object-cover"
                             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -240,7 +240,7 @@ const Page = () => {
                             <div className="w-full h-full flex items-center justify-center bg-gray-200">
                             <Image
                                 src={'/jk-wears-logo-black.svg'}
-                                alt={product?.name || "jk-wears-logo-black"}
+                                alt={product?.title || "jk-wears-logo-black"}
                                 fill
                                 className="opacity-25"
                                 sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 33vw"
@@ -268,7 +268,7 @@ const Page = () => {
 
                     {/* Name */}
                     <div>
-                        <p className='text-white text-4xl capitalize'>{product?.name}</p>
+                        <p className='text-white text-4xl capitalize'>{product?.title}</p>
                     </div>
 
                     {/* Description */}
