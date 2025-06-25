@@ -405,7 +405,7 @@ const Page = () => {
                     products.map((product) => (
                     <ProductCard 
                         key={product.slug}
-                        name={product.name}
+                        name={product.title}
                         image={product.image || ''}
                         slug={product.slug}
                         description={product.description || ''}
