@@ -193,7 +193,7 @@ const ShopPage = () => {
         </div> */}
 
         {/* Loading indicator */}
-        <Loading />
+        <Loading color='white'/>
       </div>
 
       {/* Back to Top Button */}
