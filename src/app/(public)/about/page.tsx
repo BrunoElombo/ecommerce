@@ -4,7 +4,7 @@ import ImpactReports from './modules/ImpactReports'
 import NewsroomHighlights from './modules/NewsroomHighlights'
 import Footer from './modules/Footer'
 
-const page = () => {
+const Page = () => {
   return (
     <div>
         <HeroBanner />
@@ -15,4 +15,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

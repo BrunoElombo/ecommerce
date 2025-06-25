@@ -5,7 +5,7 @@ import React, {useState} from 'react';
 import { useForm } from 'react-hook-form';
 
 
-const page = () => {
+const Page = () => {
     const {register, handleSubmit, formState:{errors}} = useForm();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -61,4 +61,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page
