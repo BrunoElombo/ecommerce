@@ -148,11 +148,6 @@ const ProductCard = ({ title, image, slug, description, price, stock }: ProductC
               />
             </div>
           )}
-          {stock === 0 && (
-            <div className="absolute top-0 right-0 bg-red-500 text-white px-3 py-1 rounded-bl-lg">
-              Out of Stock
-            </div>
-          )}
         </div>
 
         {/* Content */}
@@ -166,9 +161,6 @@ const ProductCard = ({ title, image, slug, description, price, stock }: ProductC
           {/* <p className="text-sm font- text-gray-400 mb-3 line-clamp-2">{description}</p> */}
           <div className="flex items-center justify-between">
             <span className="text-lg font-semibold text-black">{price ? `$ ${price}` : "Free"}</span>
-            <span className={`text-sm px-4 p- rounded-full  ${stock === null ? " text-green-500" : "text-red-500"}`}>
-              {stock === null ? "In stock" : "Out of stock"}
-            </span>
           </div>
         </div>
       </div>

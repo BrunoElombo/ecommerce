@@ -41,7 +41,7 @@ const ShopSection = () => {
             :
             products?.map((product:any) => <ProductCard 
                                                 key={product.slug}
-                                                title={product.title}
+                                                title={product.name}
                                                 description={product.description}
                                                 image={product.image}
                                                 price={product.price}

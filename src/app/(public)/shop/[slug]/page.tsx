@@ -2,6 +2,8 @@
 
 import ProductCard from '@/components/ProductCard';
 import { API_URL } from '@/constants/urls';
+import { useRouter } from 'next/router';
+import { useAuthContext } from '@/context/AuthContext';
 import { Product } from '@/types/Product';
 import { HeartIcon, ShoppingCartIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
@@ -12,17 +14,16 @@ import { useForm } from 'react-hook-form';
 import { toast } from "sonner";
 
 const Page = () => {
-    // const router = useRouter();
+    const router = useRouter();
     let {slug} = useParams();
+    const {token} = useAuthContext();
     let { register, handleSubmit, formState:{errors},  } = useForm();
     const [product, setProduct] = useState<Product>();
     const [products, setProducts] = useState<Product[]>([]);
     const [selectedVariations, setSelectedVariations] = useState<string[]>([]);
-    // const [quantity, setQuantity] = useState<number>(1);
-    // const [coupon, setCoupon] = useState<string>('');
+
     const [isLoading, setIsLoading] = useState(false);
     const [isLoadingRelated, setIsLoadingRelated] = useState<boolean>(false);
-    // const [cartCount, setCartCount] = useState<number>(0);
 
     useEffect(()=>{
         const handleFetchProduct = async()=>{
@@ -77,8 +78,7 @@ const Page = () => {
                     const result = await response.json();
                     if (result.data) {
                         // Calculate total items in cart
-                        // const totalItems = result.data.reduce((total: number, item: any) => total + item.qty, 0);
-                        // setCartCount(totalItems);
+                        const totalItems = result.data.reduce((total: number, item: any) => total + item.qty, 0);
                     }
                 }
             } catch (error) {
@@ -116,7 +116,12 @@ const Page = () => {
 
     const handleAddToCart = async (data: any) => {
         if (!product) return;
-        
+        if(token===undefined) {
+            alert("Login to add to cart")
+            router.push("/auth/ogin");
+            return
+        }
+
         if (!data.qty) {
             toast.error('Please enter quantity');
             return;
@@ -127,12 +132,12 @@ const Page = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     productId: product.id,
                     qty: parseInt(data.qty),
                     variations: selectedVariations,
-                    userId: "83aad496-84b0-488d-a620-563ad1469f39"
                 }),
             });
 
@@ -150,9 +155,6 @@ const Page = () => {
             }
 
             toast.success('Product added to cart successfully!');
-            
-            // Update cart count
-            // setCartCount(prev => prev + parseInt(data.qty));
             
             // Reset form
             setSelectedVariations([]);
@@ -261,14 +263,14 @@ const Page = () => {
                     <div className='flex items-center gap-2 flex-wrap'>
                         {product?.categories?.map(category => 
                             <span key={category.id} className="text-gray-300 text-sm bg-gray-700 px-2 py-1 rounded">
-                                {category.name}
+                                {category?.category.name}
                             </span>
                         )}
                     </div>
 
                     {/* Name */}
                     <div>
-                        <p className='text-white text-4xl capitalize'>{product?.title}</p>
+                        <p className='text-white text-4xl capitalize'>{product?.name}</p>
                     </div>
 
                     {/* Description */}
